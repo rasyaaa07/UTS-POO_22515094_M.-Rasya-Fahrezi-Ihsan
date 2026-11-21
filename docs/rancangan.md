@@ -72,3 +72,52 @@ Validasi setter:
 
 Aturan bisnis:
 - tambahPeserta() menolak kalau jumlahTerdaftar sudah sama dengan kuota
+
+# KRS
+
+Atribut:
+- kodeKRS: String
+- semester: int
+- tahunAkademik: String
+- totalSKS: int
+- statusKRS: String
+- mahasiswa: Mahasiswa
+- daftarMataKuliah: ArrayList<MataKuliah>
+
+Konstruktor:
+- KRS()
+- KRS(kodeKRS: String, mahasiswa: Mahasiswa, semester: int, tahunAkademik: String, statusKRS: String)
+
+Method:
+- getKodeKRS(): String
+- setKodeKRS(kodeKRS: String): void
+- getSemester(): int
+- setSemester(semester: int): void
+- getTahunAkademik(): String
+- setTahunAkademik(tahunAkademik: String): void
+- getTotalSKS(): int
+- getStatusKRS(): String
+- setStatusKRS(statusKRS: String): void
+- getMahasiswa(): Mahasiswa
+- setMahasiswa(mahasiswa: Mahasiswa): void
+- getDaftarMataKuliah(): ArrayList<MataKuliah>
+- tampilkanKRS(): void
+- hitungTotalSKS(): int
+- tambahMataKuliah(mk: MataKuliah): boolean
+- batalkanKRS(): void
+
+Validasi setter:
+- kodeKRS dan tahunAkademik tidak boleh kosong
+- semester harus 1 sampai 14
+- mahasiswa tidak boleh null
+
+Aturan bisnis
+tambahMataKuliah():
+- ditolak kalau mahasiswa tidak aktif
+- ditolak kalau mata kuliah sudah ada di KRS
+- ditolak kalau kuota mata kuliah penuh
+- ditolak kalau totalSKS + sks mata kuliah lebih dari 24
+- kalau lolos semua, panggil tambahPeserta() lalu perbarui totalSKS
+
+batalkanKRS():
+- memanggil kurangiPeserta() pada setiap mata kuliah, lalu mengosongkan daftarMataKuliah dan totalSKS
