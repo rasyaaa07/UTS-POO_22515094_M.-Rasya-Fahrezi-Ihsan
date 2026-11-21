@@ -180,3 +180,18 @@ Aturan:
 - push() mengembalikan false kalau penuh
 - pop() dan peek() mengembalikan null kalau kosong
 - Konstruktor default memakai kapasitas 10, kapasitas harus lebih dari 0
+
+# Main
+
+Atribut:
+- kampus: Kampus
+- riwayat: Stack
+- scanner: Scanner
+
+Method:
+- main(args: String[]): void
+- tampilkanMenu(): void
+- prosesMenu(pilihan: int): void
+- jalankanProgram(): void
+- bacaInt(pesan: String): int
+- bacaString(pesan: String): String
