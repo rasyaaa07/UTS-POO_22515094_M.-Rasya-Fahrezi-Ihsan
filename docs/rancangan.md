@@ -153,4 +153,30 @@ Aturan bisnis:
 - tambahMahasiswa() menolak NIM duplikat
 - tambahMataKuliah() menolak kode duplikat
 - buatKRS() menolak kalau mahasiswa atau mata kuliah tidak ditemukan, lalu memanggil tambahMataKuliah() milik KRS
-- hapusKRS() memanggil batalkanKRS() lalu menghapus KRS dari daftarKRS 
+- hapusKRS() memanggil batalkanKRS() lalu menghapus KRS dari daftarKRS
+
+# Stack
+
+Atribut:
+- data: String[]
+- kapasitas: int
+- top: int
+
+Konstruktor:
+- Stack()
+- Stack(kapasitas: int)
+
+Method:
+- push(aktivitas: String): boolean
+- pop(): String
+- peek(): String
+- isEmpty(): boolean
+- isFull(): boolean
+- size(): int
+- tampilkanIsi(): void
+
+Aturan:
+- Isi stack adalah kodeKRS yang baru dibuat, dipakai untuk fitur batalkan KRS terakhir
+- push() mengembalikan false kalau penuh
+- pop() dan peek() mengembalikan null kalau kosong
+- Konstruktor default memakai kapasitas 10, kapasitas harus lebih dari 0
