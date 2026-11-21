@@ -121,3 +121,36 @@ tambahMataKuliah():
 
 batalkanKRS():
 - memanggil kurangiPeserta() pada setiap mata kuliah, lalu mengosongkan daftarMataKuliah dan totalSKS
+
+# Kampus
+Atribut:
+- namaKampus: String
+- daftarMahasiswa: ArrayList<Mahasiswa>
+- daftarMataKuliah: ArrayList<MataKuliah>
+- daftarKRS: ArrayList<KRS>
+- jumlahMahasiswa: int
+
+Konstruktor:
+- Kampus()
+- Kampus(namaKampus: String)
+
+Method:
+- getNamaKampus(): String
+- setNamaKampus(namaKampus: String): void
+- tambahMahasiswa(m: Mahasiswa): boolean
+- tambahMataKuliah(mk: MataKuliah): boolean
+- cariMahasiswa(nim: String): Mahasiswa
+- cariMataKuliah(kode: String): MataKuliah
+- cariKRS(kodeKRS: String): KRS
+- buatKRS(kodeKRS: String, nim: String, kodeMk: String): KRS
+- hapusKRS(kodeKRS: String): boolean
+- tampilkanSemuaMahasiswa(): void
+- tampilkanSemuaMataKuliah(): void
+- tampilkanSemuaKRS(): void
+- tampilkanRingkasan(): void
+
+Aturan bisnis:
+- tambahMahasiswa() menolak NIM duplikat
+- tambahMataKuliah() menolak kode duplikat
+- buatKRS() menolak kalau mahasiswa atau mata kuliah tidak ditemukan, lalu memanggil tambahMataKuliah() milik KRS
+- hapusKRS() memanggil batalkanKRS() lalu menghapus KRS dari daftarKRS
