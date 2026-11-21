@@ -36,3 +36,39 @@ Method:
 Validasi setter:
 - nama, nim, programStudi tidak boleh null atau kosong
 - semester harus 1 sampai 14
+
+# MataKuliah
+
+Atribut:
+- namaMataKuliah: String
+- kodeMataKuliah: String
+- sks: int
+- kuota: int
+- jumlahTerdaftar: int
+
+Konstruktor:
+-MataKuliah()
+-MataKuliah(namaMataKuliah: String, kodeMataKuliah: String, sks: int, kuota: int)
+
+Method:
+- getNamaMataKuliah(): String
+- setNamaMataKuliah(namaMataKuliah: String): void
+- getKodeMataKuliah(): String
+- setKodeMataKuliah(kodeMataKuliah: String): void
+- getSKS(): int
+- setSKS(sks: int): void
+- getKuota(): int
+- setKuota(kuota: int): void
+- getJumlahTerdaftar(): int
+- tampilkanInfo(): void
+- cekKetersediaan(): boolean
+- tambahPeserta(): boolean
+- kurangiPeserta(): void
+
+Validasi setter:
+- namaMataKuliah dan kodeMataKuliah tidak boleh kosong
+- sks harus 1 sampai 6
+- kuota harus lebih dari 0
+
+Aturan bisnis:
+- tambahPeserta() menolak kalau jumlahTerdaftar sudah sama dengan kuota
