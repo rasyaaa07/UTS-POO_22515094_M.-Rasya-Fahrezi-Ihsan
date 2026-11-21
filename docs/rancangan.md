@@ -153,4 +153,4 @@ Aturan bisnis:
 - tambahMahasiswa() menolak NIM duplikat
 - tambahMataKuliah() menolak kode duplikat
 - buatKRS() menolak kalau mahasiswa atau mata kuliah tidak ditemukan, lalu memanggil tambahMataKuliah() milik KRS
-- hapusKRS() memanggil batalkanKRS() lalu menghapus KRS dari daftarKRS
+- hapusKRS() memanggil batalkanKRS() lalu menghapus KRS dari daftarKRS 
