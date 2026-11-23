@@ -41,8 +41,8 @@ public class Main {
         System.out.println("6.  Tambah mata kuliah ke KRS");
         System.out.println("7.  Tampilkan semua KRS");
         System.out.println("8.  Cari mahasiswa / mata kuliah");
-        System.out.println("9.  Batalkan KRS terakhir (pop Stack)");
-        System.out.println("10. Lihat riwayat KRS (isi Stack)");
+        System.out.println("9.  Batalkan KRS terakhir");
+        System.out.println("10. Lihat riwayat KRS");
         System.out.println("11. Ubah status mahasiswa");
         System.out.println("12. Ringkasan");
         System.out.println("0.  Keluar");
