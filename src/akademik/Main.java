@@ -2,6 +2,10 @@ package akademik;
 
 import java.util.Scanner;
 
+/**
+ * Main berisi menu console untuk aplikasi Akademik Mini Kampus.
+ * Input pengguna divalidasi agar program tidak crash.
+ */
 public class Main {
     private Kampus kampus;
     private Stack riwayat;
@@ -25,6 +29,7 @@ public class Main {
             try {
                 prosesMenu(pilihan);
             } catch (IllegalArgumentException e) {
+                // Data tidak valid dari setter/konstruktor: tampilkan pesan, program lanjut
                 System.out.println("Input tidak valid: " + e.getMessage());
             }
         } while (pilihan != 0);
@@ -41,8 +46,8 @@ public class Main {
         System.out.println("6.  Tambah mata kuliah ke KRS");
         System.out.println("7.  Tampilkan semua KRS");
         System.out.println("8.  Cari mahasiswa / mata kuliah");
-        System.out.println("9.  Batalkan KRS terakhir");
-        System.out.println("10. Lihat riwayat KRS");
+        System.out.println("9.  Batalkan KRS terakhir (pop Stack)");
+        System.out.println("10. Lihat riwayat KRS (isi Stack)");
         System.out.println("11. Ubah status mahasiswa");
         System.out.println("12. Ringkasan");
         System.out.println("0.  Keluar");
@@ -124,6 +129,7 @@ public class Main {
         KRS krs = kampus.buatKRS(kodeKrs, nim, kodeMk);
         if (krs != null) {
             System.out.println("KRS " + krs.getKodeKRS() + " berhasil dibuat.");
+            // Catat ke riwayat agar bisa dibatalkan (LIFO)
             if (!riwayat.push(krs.getKodeKRS())) {
                 System.out.println("Peringatan: riwayat penuh, KRS ini tidak tercatat untuk dibatalkan.");
             }
@@ -195,6 +201,7 @@ public class Main {
         System.out.println("Status mahasiswa diubah menjadi " + (status == 1 ? "aktif." : "nonaktif."));
     }
 
+    /** Membaca satu baris teks, mengulang sampai tidak kosong. */
     private String bacaString(String pesan) {
         while (true) {
             System.out.print(pesan);
@@ -211,6 +218,7 @@ public class Main {
         }
     }
 
+    /** Membaca bilangan bulat, mengulang sampai input berupa angka. */
     private int bacaInt(String pesan) {
         while (true) {
             String teks = bacaString(pesan);

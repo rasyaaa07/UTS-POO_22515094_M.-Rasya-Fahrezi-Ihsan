@@ -2,6 +2,10 @@ package akademik;
 
 import java.util.ArrayList;
 
+/**
+ * Kampus mengelola kumpulan Mahasiswa, MataKuliah, dan KRS.
+ * Semua data disimpan di memori selama program berjalan.
+ */
 public class Kampus {
     private static final String TAHUN_AKADEMIK_DEFAULT = "2026/2027";
 
@@ -11,6 +15,7 @@ public class Kampus {
     private ArrayList<KRS> daftarKRS;
     private int jumlahMahasiswa;
 
+    /** Konstruktor default. */
     public Kampus() {
         this.namaKampus = "Kampus";
         this.daftarMahasiswa = new ArrayList<>();
@@ -19,6 +24,7 @@ public class Kampus {
         this.jumlahMahasiswa = 0;
     }
 
+    /** Konstruktor berparameter. */
     public Kampus(String namaKampus) {
         this();
         this.setNamaKampus(namaKampus);
@@ -29,12 +35,14 @@ public class Kampus {
     }
 
     public void setNamaKampus(String namaKampus) {
+        // Validasi: nama kampus tidak boleh null atau kosong
         if (namaKampus == null || namaKampus.trim().isEmpty()) {
             throw new IllegalArgumentException("Nama kampus tidak boleh kosong.");
         }
         this.namaKampus = namaKampus.trim();
     }
 
+    /** Menambah mahasiswa. Aturan: NIM tidak boleh duplikat. */
     public boolean tambahMahasiswa(Mahasiswa m) {
         if (m == null) {
             System.out.println("Gagal: data mahasiswa tidak valid.");
@@ -49,6 +57,7 @@ public class Kampus {
         return true;
     }
 
+    /** Menambah mata kuliah. Aturan: kode tidak boleh duplikat. */
     public boolean tambahMataKuliah(MataKuliah mk) {
         if (mk == null) {
             System.out.println("Gagal: data mata kuliah tidak valid.");
@@ -62,6 +71,7 @@ public class Kampus {
         return true;
     }
 
+    /** Mencari mahasiswa berdasarkan NIM. Mengembalikan null jika tidak ditemukan. */
     public Mahasiswa cariMahasiswa(String nim) {
         if (nim == null) {
             return null;
@@ -74,6 +84,7 @@ public class Kampus {
         return null;
     }
 
+    /** Mencari mata kuliah berdasarkan kode. Mengembalikan null jika tidak ditemukan. */
     public MataKuliah cariMataKuliah(String kode) {
         if (kode == null) {
             return null;
@@ -86,6 +97,7 @@ public class Kampus {
         return null;
     }
 
+    /** Mencari KRS berdasarkan kode. Mengembalikan null jika tidak ditemukan. */
     public KRS cariKRS(String kodeKRS) {
         if (kodeKRS == null) {
             return null;
@@ -98,6 +110,11 @@ public class Kampus {
         return null;
     }
 
+    /**
+     * Membuat KRS baru untuk mahasiswa dengan satu mata kuliah awal.
+     * Transaksi ini menghubungkan Mahasiswa, MataKuliah, dan KRS.
+     * @return KRS yang dibuat, atau null jika gagal
+     */
     public KRS buatKRS(String kodeKRS, String nim, String kodeMk) {
         if (cariKRS(kodeKRS) != null) {
             System.out.println("Gagal: kode KRS " + kodeKRS + " sudah dipakai.");
@@ -115,12 +132,13 @@ public class Kampus {
         }
         KRS krs = new KRS(kodeKRS, m, m.getSemester(), TAHUN_AKADEMIK_DEFAULT, "Aktif");
         if (!krs.tambahMataKuliah(mk)) {
-            return null;
+            return null; // pesan kesalahan sudah ditampilkan oleh KRS
         }
         daftarKRS.add(krs);
         return krs;
     }
 
+    /** Menambah mata kuliah ke KRS yang sudah ada. */
     public boolean tambahMataKuliahKeKRS(String kodeKRS, String kodeMk) {
         KRS krs = cariKRS(kodeKRS);
         if (krs == null) {
@@ -135,6 +153,7 @@ public class Kampus {
         return krs.tambahMataKuliah(mk);
     }
 
+    /** Membatalkan lalu menghapus KRS dari daftar. */
     public boolean hapusKRS(String kodeKRS) {
         KRS krs = cariKRS(kodeKRS);
         if (krs == null) {
@@ -176,6 +195,7 @@ public class Kampus {
         }
     }
 
+    /** Menampilkan ringkasan jumlah data dan total SKS seluruh KRS. */
     public void tampilkanRingkasan() {
         int totalSks = 0;
         for (KRS krs : daftarKRS) {
